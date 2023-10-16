@@ -1,29 +1,35 @@
-import java.util.Scanner;  // Import the Scanner class
-public class Driver{
-public static void main(String args[]){
-        String Password;
+import java.util.Scanner;
 
-        RandPass randPass = new RandPass();
-        randPass.randomPass();
+public class Driver {
 
-        // settings the floor and ceiling of the pass length
-        int min = 8;
-        int max = 12;
-        //generates the password legnth from min to max
-        int PassLen = (int)Math.floor(Math.random() * (max - min + 1) + min);
+  public static void main(String[] args) {
+        Scanner choice = new Scanner(System.in);
+        System.out.println("What type of password do you want to generate: Random password(PASS) or Random pin(PIN)?");
+        String input = choice.nextLine();
 
-        //asks the user what type of password they want
-        System.out.println("Do you want to make a pin, randpass or a mempass?[P | R | M]");
-        Scanner type = new Scanner(String.in);
-        String choice = type.nextLine();
+        //if the user choses to make a PIN...
+        if ("PIN".equals(input)) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("How long do you want your pin to be?");
+            //creates a variable to set how long the pin will be
+            int len = scanner.nextInt();
+            String pin = randPin.generatePin(len);
+            System.out.println("Your PIN is: " + pin);
+        } 
 
-        //if the user chooses a pin...
-        if(choice.equals('P')){
-            Scanner input = new Scanner(String.in); 
-            System.out.println("Do you want your pin to be 4 or 6 characters long?");
-            String pinLen = input.nextLine();
-            System.out.println("A " + pinLen + " long password will be generated");
-            
+       //if the user choses to make a password...
+        else if ("PASS".equals(input)) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("How long do you want your password to be?");
+           //creates a variable to set how long the  will be
+            int length = scanner.nextInt();
+            String pass = randPass.generatePassword(length);
+            System.out.println("Your password is: " + pass);
+        } 
+    
+        //if the user has an invalid input...
+        else {
+            System.out.println("Invalid answer, please retry");
+        }
     }
-}
 }
